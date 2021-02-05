@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Personal Album</title>
+{% endblock %}
+{% block body %}
+<div class="container-fluid md">
+    <form method="POST" action="{{ url_for('login') }}" id='regForm'>
+        {{ form.csrf_token }}
+        <div>
+            {{form.userID.label}} {{ form.userID(class='form-control', autocomplete='off') }}
+            </div>
+        <div>
+        {{form.passwd.label}} {{ form.passwd(class='form-control', autocomplete='off') }}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+</div>
+{% endblock %}

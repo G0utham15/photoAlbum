@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Personal Album</title>
+{% endblock %}
+{% block body %}
+<div class="container-fluid md">
+    <form method="POST" action="{{ url_for('register') }}" id='regForm'>
+        {{ form.csrf_token }}
+        <div>
+        {{form.name.label}}
+        {% if form.name.errors %}
+     {{ form.name(class="form-control form-control-md is-invalid") }}
+     <div class="invalid-feedback">
+      {% for error in form.name.errors %}
+       <span>{{ error }}</span>
+      {% endfor %}
+     </div>
+    {% else %}  
+     {{ form.name(class="form-control form-control-md", autofocus=true, autocomplete='off')}}
+    {% endif %}
+        </div>
+        <div>
+        {{form.userID.label}} {{ form.userID(class='form-control', autocomplete='off') }}
+        </div>
+        <div>
+            {{form.emailID.label}} {{ form.emailID(class='form-control', autocomplete='off') }}
+        </div>
+        <div>
+        {{form.mobileNo.label}} {{ form.mobileNo(class='form-control', autocomplete='off') }}
+        </div>
+        <div>
+        {{form.passwd.label}} {{ form.passwd(class='form-control', autocomplete='off') }}
+        </div>
+        <div>
+        {{form.confPasswd.label}}{{ form.confPasswd(class='form-control') }}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+</div>
+{% endblock %}
