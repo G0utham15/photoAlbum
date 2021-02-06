@@ -29,7 +29,7 @@ def load_user(user_id):
 @login_required
 def index():
     return render_template('index.html', name=current_user.name)
-
+@app.route('/')
 @app.route("/register", methods=['POST', 'GET'])
 def register():
     reg_form=registration()
