@@ -1,0 +1,15 @@
+{% macro displayFeild(feildName) %}
+<div class="form-group">
+    {{ feildName.label }}
+    {% if feildName.errors %}
+        {{ feildName(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in feildName.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% else %}  
+        {{ feildName(class="form-control form-control-md", **kwargs)}}
+    {% endif %}
+</div>
+{% endmacro %}

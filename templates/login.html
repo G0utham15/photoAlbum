@@ -1,17 +1,16 @@
+{% from '_formhelper.html' import displayFeild %}
 {% extends "base.html" %}
 {% block head %}
 <title>Personal Album</title>
 {% endblock %}
 {% block body %}
-<div class="container-fluid md">
-    <form method="POST" action="{{ url_for('login') }}" id='regForm'>
-        {{ form.csrf_token }}
-        <div>
-            {{form.userID.label}} {{ form.userID(class='form-control', autocomplete='off') }}
-            </div>
-        <div>
-        {{form.passwd.label}} {{ form.passwd(class='form-control', autocomplete='off') }}
-        </div>
+<div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+    <form method="POST" action="{{ url_for('login') }}">
+        {{ form.hidden_tag() }}
+        
+        {{ displayFeild(form.userID, placeholder="UserID", autocomplete='off', autofocus=true) }}
+
+        {{ displayFeild(form.passwd, placeholder="Password", autocomplete='off') }}
         <div>
             {{ form.submit }}
         </div>
