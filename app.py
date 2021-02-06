@@ -1,16 +1,15 @@
-from flask import Flask, redirect, render_template, url_for
-from flask.helpers import flash
+from flask import Flask, redirect, render_template, url_for, flash
 from flask_login import LoginManager, login_required, UserMixin, login_user, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from forms import loginForm, registration
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app=Flask(__name__)
-app.config['SECRET_KEY']="AA1D1644C4313521A74D6F6D75966"
+app.config.from_pyfile('config.cfg')
 login_manager=LoginManager()
 login_manager.init_app(app)
+login_manager.session_protection = 'strong'
 login_manager.login_view='login'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///auth.db'
 db=SQLAlchemy(app)
 
 # Models
@@ -64,4 +63,4 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
